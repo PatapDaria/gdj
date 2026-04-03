@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - МБУ «ЦБС Альметьевского МР РТ»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            color: #0e2b0f;
+        }
+
+        .nav a.active {
+            color: #154718;
+            font-weight: 700;
+            border-bottom: 2px solid #154718;
+            padding-bottom: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 25px;
+        }
+        .social-icons a {
+            color: #0e2b0f;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: #0e2b0f;
+        }
+
+        /* Hero секция для страницы новостей */
+        .page-hero {
+            background: linear-gradient(15deg, #bddf00f3 0, 2%, #001a01 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveDots 20s linear infinite;
+        }
+
+        @keyframes moveDots {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(40px, 40px);
+            }
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Секция новостей */
+        .news-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #103312;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #103312;
+            margin: 12px auto 0;
+        }
+
+        /* Сетка карточек */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e8e8e8;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+            border-color: #103312;
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: #103312;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-date i {
+            font-size: 0.8rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #1e2a3e;
+            line-height: 1.4;
+        }
+
+        .card-content p {
+            color: #5a6c7e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #103312;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .card-link:hover {
+            gap: 12px;
+        }
+
+        /* Фильтры */
+        .news-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e2a3e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: #e8f5e9;
+            color: #103312;
+        }
+
+        .filter-btn.active {
+            background: #103312;
+            color: white;
+        }
+
+        /* Кнопка назад */
+        .back-home-btn {
+            background: #103312;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 40px 0;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .back-home-btn:hover {
+            background: #103312;
+            transform: translateY(-2px);
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: #f5f5f5;
+            color: #1e2a3e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background: #103312;
+            color: white;
+        }
+
+        /* Модальное окно для новости */
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.4s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body h2 {
+            color: #103312;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .modal-date {
+            color: #103312;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-body p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            background: #103312;
+            transform: rotate(90deg);
+        }
+
+        .modal-btn {
+            background: #103312;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .modal-btn:hover {
+            background: #103312;
+            transform: translateY(-2px);
+        }
+
+        /* Партнеры */
+        .partners {
+            background: #f5f5f5;
+            padding: 20px 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .partners-grid img {
+            height: 70px;
+            object-fit: contain;
+        }
+
+        /* Футер */
+        .footer {
+            background: #1e2a3e;
+            color: #ddd;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./img/КИТАБ.svg" alt="Логотип" style="filter:brightness(92%) contrast(87%);">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">Об учреждении</a></li>
+                    <li><a href="/novosti.html" class="active">Новости</a></li>
+                    <li><a href="./poster.html">Афиша</a></li>
+                    <li><a href="./contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://vk.com/almetbiblioteka" target="_blank" rel="noopener noreferrer"><i class="fab fa-vk"></i></a>
+                <a href="https://t.me/almetbiblio" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/results?search_query=альметьевск+библиотека" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO СЕКЦИЯ -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Новости библиотек</h1>
+            <p>Актуальные события, анонсы мероприятий и важные объявления МБУ «ЦБС Альметьевского муниципального района»</p>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ НОВОСТЕЙ -->
+    <div class="news-section">
+        <div class="container">
+            <!-- Фильтры новостей -->
+            <div class="news-filters">
+                <button class="filter-btn active" data-filter="all">Все новости</button>
+                <button class="filter-btn" data-filter="events">Мероприятия</button>
+                <button class="filter-btn" data-filter="announcements">Анонсы</button>
+            </div>
+
+            <!-- Сетка новостей -->
+            <div class="cards-grid" id="newsGrid">
+                <!-- Новость 1 -->
+                <div class="card" data-category="events" data-news="museum">
+                    <img src="./img/пойдемвмузей.jpg" alt="Пойдем в музей!">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 18 мая 2026</div>
+                        <h3>«Ночь музеев» в библиотеках Альметьевска</h3>
+                        <p>Ежегодная акция пройдет в библиотеках города. Вас ждут увлекательные экскурсии, мастер-классы и выставки.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('museum'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 2 -->
+                <div class="card" data-category="events" data-news="maslenitsa">
+                    <img src="./img/провожаем.png" alt="Провожаем зиму">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 15 марта 2026</div>
+                        <h3>Масленичные гуляния в библиотеках</h3>
+                        <p>Блины, хороводы, народные игры и мастер-классы по изготовлению кукол-оберегов.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('maslenitsa'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 3 -->
+                <div class="card" data-category="events" data-news="victory">
+                    <img src="./img/намжить.jpeg" alt="Нам жить и помнить">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 9 мая 2026</div>
+                        <h3>«Нам жить и помнить» — ко Дню Победы</h3>
+                        <p>Встречи с ветеранами, уроки мужества, книжные выставки и литературные вечера.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('victory'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 4 -->
+                <div class="card" data-category="projects" data-news="tukay">
+                    <img src="./img/тукай.jpeg" alt="Тукай с нами">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 26 апреля 2026</div>
+                        <h3>«Тукай с нами» — 140 лет со дня рождения поэта</h3>
+                        <p>Чтение стихов, театрализованные представления и конкурсы во всех библиотеках района.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('tukay'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 5 -->
+                <div class="card" data-category="projects" data-news="jalil">
+                    <img src="./img/120лет.jpeg" alt="120-летие Мусы Джалиля">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 15 февраля 2026</div>
+                        <h3>120-летие Мусы Джалиля</h3>
+                        <p>Юбилейные мероприятия, посвященные великому поэту-герою: литературные чтения, выставки, концерты.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('jalil'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 6 -->
+                <div class="card" data-category="announcements" data-news="virtual">
+                    <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концертный зал">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 26 марта 2026</div>
+                        <h3>Виртуальный концертный зал открывает сезон</h3>
+                        <p>Трансляции лучших спектаклей и концертов в библиотеках города. Первая трансляция уже в эту пятницу!</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('virtual'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 7 -->
+                <div class="card" data-category="announcements" data-news="pushkin">
+                    <img src="https://almetbiblio.ru/wp-content/uploads/2022/12/projects-pushkin.jpg" alt="Пушкинская карта">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 10 января 2026</div>
+                        <h3>Новые возможности по Пушкинской карте</h3>
+                        <p>Эксклюзивные мастер-классы, театральные читки и доступ к цифровым ресурсам для молодежи.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('pushkin'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 8 -->
+                <div class="card" data-category="events" data-news="crossword">
+                    <img src="./img/исторический.jpeg" alt="Исторический кроссворд">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 25 января 2026</div>
+                        <h3>Всероссийский исторический кроссворд</h3>
+                        <p>В Центральной детской библиотеке прошла просветительская акция, посвященная 80-летию Победы.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('crossword'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+
+                <!-- Новость 9 -->
+                <div class="card" data-category="projects" data-news="creativemarket">
+                    <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-market-3.jpeg" alt="Креатив-маркет">
+                    <div class="card-content">
+                        <div class="card-date"><i class="far fa-calendar-alt"></i> 5 апреля 2026</div>
+                        <h3>Креатив-маркет «ПроЯвляйся»</h3>
+                        <p>Выставки handmade, лекции от дизайнеров и творческая резиденция ждут гостей.</p>
+                        <a href="#" class="card-link" onclick="openNewsModal('creativemarket'); return false;">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопка возврата -->
+            <div style="text-align: center;">
+                <a href="index.html" class="back-home-btn">← Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+         <!-- ПАРТНЕРЫ -->
+         <div class="partners">
+            <div class="container">
+                <div class="partners-grid">
+                    <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="./img/КультураРФ-e1765462576235.png" alt="Культура.РФ">
+                    </a>
+                    <a href="http://publication.pravo.gov.ru/document/1600202510210002" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="./img/logo_2026_rt2.jpg" alt="2026 РФ">
+                    </a>
+                    <a href="https://pro.culture.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo3.jpg" alt="2026 РТ">
+                    </a>
+                    <a href="https://telefon-doveria.ru/about/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo4.png" alt="ЛитРес">
+                    </a>
+                    <a href="https://rusneb.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo5.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://history-lib.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo6.png" alt="НЭБ">
+                    </a>
+                    <a href="https://www.ya-roditel.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изобр2.gif" alt="НЭБ">
+                    </a>
+                    <a href="https://rtdety.tatarstan.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб9.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://fss16.ru/index.php?name=News&op=article&sid=1396" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб8.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo7.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://pravo.gov.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб13.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб7.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб6.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://новаябиблиотека.рф/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб5.png" alt="НЭБ">
+                    </a>
+                    <a href="https://kitap.tatar.ru/ru/site/42317029a/pages/antiterror/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб4.png" alt="НЭБ">
+                    </a>
+                    <a href="85.233.77.7/cgi/zgate.exe?Init+005.xml,simple.xsl+rus" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб12.jpg" alt="НЭБ">
+                    </a>
+                </div>
+            </div>
+        </div>
+            <!-- ФУТЕР -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div>
+                            <p style="margin-top: 15px;">© 2026 МБУ «ЦБС Альметьевского МР РТ»<br>Год единства и созидания</p>
+                        </div>
+                        <div class="footer-links">
+                            <a href="https://almetbiblio.ru/poisk/" target="_blank">Электронный каталог</a>
+                            <a href="https://culture.gov.ru/" target="_blank">Министерство культуры РФ</a>
+                            <a href="https://mincult.tatarstan.ru/" target="_blank">Министерство культуры РТ</a>
+                            <a href="https://almetcult.ru/" target="_blank">Управление культуры Альметьевск</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        
+    <!-- МОДАЛЬНЫЕ ОКНА ДЛЯ НОВОСТЕЙ -->
+    <div id="modalMuseum" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalMuseum')">&times;</span>
+            <img src="./img/пойдемвмузей.jpg" alt="Ночь музеев" class="modal-img">
+            <div class="modal-body">
+                <h2>«Ночь музеев» в библиотеках Альметьевска</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 18 мая 2026 | 18:00–23:00</div>
+                <p><strong>Ежегодная акция «Ночь музеев»</strong> пройдет в библиотеках Альметьевска уже в эту субботу!</p>
+                <p>Вас ждут:</p>
+                <p>• Увлекательные экскурсии по книжным фондам<br>
+                • Мастер-классы от местных художников<br>
+                • Выставки редких книг и рукописей<br>
+                • Литературные квесты для всей семьи<br>
+                • Ночные чтения любимых книг</p>
+                <p>Вход свободный. Все мероприятия бесплатны. Ждем вас в Центральной библиотеке и городских филиалах!</p>  
+            </div>
+        </div>
+    </div>
+
+    <div id="modalMaslenitsa" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalMaslenitsa')">&times;</span>
+            <img src="./img/провожаем.png" alt="Масленица" class="modal-img">
+            <div class="modal-body">
+                <h2>Масленичные гуляния в библиотеках города</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 15 марта 2026 | 12:00–17:00</div>
+                <p>Приглашаем всех жителей и гостей Альметьевска на празднование Масленицы в библиотеках города!</p>
+                <p><strong>Программа праздника:</strong></p>
+                <p>• Блинная ярмарка с угощениями<br>
+                • Хороводы и народные игры<br>
+                • Мастер-классы по изготовлению кукол-оберегов<br>
+                • Конкурсы на лучший блин<br>
+                • Чтение стихов о весне</p>
+                <p>Приходите всей семьей! Вход свободный.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalVictory" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalVictory')">&times;</span>
+            <img src="./img/намжить.jpeg" alt="День Победы" class="modal-img">
+            <div class="modal-body">
+                <h2>«Нам жить и помнить» — ко Дню Победы</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 9 мая 2026 | 10:00–18:00</div>
+                <p>Цикл мероприятий, посвященных 81-й годовщине Великой Победы, пройдет во всех библиотеках района.</p>
+                <p><strong>В программе:</strong></p>
+                <p>• Встречи с ветеранами и тружениками тыла<br>
+                • Уроки мужества для школьников<br>
+                • Книжные выставки «Победа в сердце каждого»<br>
+                • Литературные вечера и чтения стихов военных лет<br>
+                • Акция «Свеча памяти»</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalTukay" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalTukay')">&times;</span>
+            <img src="./img/тукай.jpeg" alt="Тукай" class="modal-img">
+            <div class="modal-body">
+                <h2>«Тукай с нами» — 140 лет со дня рождения поэта</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 26 апреля 2026 | 11:00–16:00</div>
+                <p>В молодежном центре «Фабрика креативных процессов» пройдет поэтический батл «Тукай с нами».</p>
+                <p><strong>Что ждет посетителей:</strong></p>
+                <p>• Чтение стихов на татарском и русском языках<br>
+                • Театрализованные представления по произведениям поэта<br>
+                • Конкурс рисунков «Тукай глазами детей»<br>
+                • Викторины и литературные игры</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalJalil" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalJalil')">&times;</span>
+            <img src="./img/120лет.jpeg" alt="Муса Джалиль" class="modal-img">
+            <div class="modal-body">
+                <h2>120-летие Мусы Джалиля</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 15 февраля 2026</div>
+                <p>Юбилейные мероприятия, посвященные великому поэту-герою, проходят во всех библиотеках района.</p>
+                <p><strong>Мероприятия:</strong></p>
+                <p>• Литературные чтения «Моабитские тетради»<br>
+                • Книжные выставки «Поэт-герой»<br>
+                • Концерты татарской музыки<br>
+                • Уроки патриотизма для школьников<br>
+                • Кинопоказы фильмов о жизни поэта</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalVirtual" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalVirtual')">&times;</span>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концертный зал" class="modal-img">
+            <div class="modal-body">
+                <h2>Виртуальный концертный зал открывает сезон</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> С 26 марта 2026</div>
+                <p>Новый сезон виртуальных концертов стартует в библиотеках Альметьевска!</p>
+                <p><strong>В афише:</strong></p>
+                <p>• Симфонические концерты из Мариинского театра<br>
+                • Оперные постановки Большого театра<br>
+                • Балетные спектакли в HD-качестве<br>
+                • Джазовые вечера и камерная музыка</p>
+                <p>Вход по Пушкинской карте и бесплатно для пенсионеров.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalPushkin" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalPushkin')">&times;</span>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2022/12/projects-pushkin.jpg" alt="Пушкинская карта" class="modal-img">
+            <div class="modal-body">
+                <h2>Новые возможности по Пушкинской карте</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> С января 2026</div>
+                <p>В новом году для обладателей Пушкинской карты открыты новые возможности в библиотеках Альметьевска!</p>
+                <p><strong>Доступно:</strong></p>
+                <p>• Эксклюзивные мастер-классы от приглашенных мастеров<br>
+                • Театральные читки современных пьес<br>
+                • Доступ к цифровым ресурсам НЭБ<br>
+                • Скидки на мероприятия библиотек</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalCrossword" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalCrossword')">&times;</span>
+            <img src="./img/исторический.jpeg" alt="Исторический кроссворд" class="modal-img">
+            <div class="modal-body">
+                <h2>Всероссийский исторический кроссворд</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 25 января 2026</div>
+                <p>В Центральной детской библиотеке состоялась просветительская акция «Всероссийский исторический кроссворд».</p>
+                <p><strong>Тематика 2025 года:</strong> 80-летие Победы в Великой Отечественной войне.</p>
+                <p>Участники проверили свои знания истории, ответили на вопросы о ключевых событиях 1941-1945 годов и получили памятные призы.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalCreativemarket" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalCreativemarket')">&times;</span>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-market-3.jpeg" alt="Креатив-маркет" class="modal-img">
+            <div class="modal-body">
+                <h2>Креатив-маркет «ПроЯвляйся»</h2>
+                <div class="modal-date"><i class="far fa-calendar-alt"></i> 5 апреля 2026 | 12:00–19:00</div>
+                <p>Приглашаем всех творческих и креативных на фестиваль handmade и дизайна!</p>
+                <p><strong>В программе:</strong></p>
+                <p>• Выставка работ местных мастеров<br>
+                • Лекции от дизайнеров и маркетологов<br>
+                • Творческая резиденция для художников<br>
+                • Мастер-классы по созданию авторских вещей</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функции для модальных окон
+        function openNewsModal(newsId) {
+            const modalMap = {
+                'museum': 'modalMuseum',
+                'maslenitsa': 'modalMaslenitsa',
+                'victory': 'modalVictory',
+                'tukay': 'modalTukay',
+                'jalil': 'modalJalil',
+                'virtual': 'modalVirtual',
+                'pushkin': 'modalPushkin',
+                'crossword': 'modalCrossword',
+                'creativemarket': 'modalCreativemarket'
+            };
+            const modalId = modalMap[newsId];
+            if (modalId) {
+                document.getElementById(modalId).style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие модального окна при клике вне его области
+        window.onclick = function(event) {
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Закрытие по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'flex') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // Фильтрация новостей
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Убираем активный класс у всех кнопок
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                newsCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Плавающие кнопки
+        document.getElementById('ratingBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Оценить работу библиотеки можно по телефону +7 (8553) 22-33-44 или на сайте almetbiblio.ru');
+        });
+        document.getElementById('bookBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Для продления книги позвоните +7 (8553) 22-33-44 или напишите на info@almetbiblio.ru');
+        });
+    </script>
+</body>
+</html>

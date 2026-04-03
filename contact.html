@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты и филиалы - МБУ «ЦБС Альметьевского МР РТ»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            color: #0e2b0f;
+        }
+
+        .nav a.active {
+            color: #0e2b0f;
+            font-weight: 700;
+            border-bottom: 2px solid #0e2b0f;
+            padding-bottom: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 25px;
+        }
+
+        .social-icons a {
+            color: #0e2b0f;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #0e2b0f;
+        }
+
+        /* Hero секция */
+        .page-hero {
+            background: linear-gradient(15deg, #bddf00f3 0, 2%, #001a01 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveDots 20s linear infinite;
+        }
+
+        @keyframes moveDots {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(40px, 40px);
+            }
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Контакты */
+        .contacts-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #0e2b0f;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #0e2b0f;
+            margin: 12px auto 0;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .contacts-info p {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .contacts-info i {
+            width: 24px;
+            color: #0e2b0f;
+            font-size: 1.2rem;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            border: 0;
+        }
+
+        .filials-title {
+            font-size: 1.5rem;
+            color: #0e2b0f;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+
+        .contacts-block {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contacts-block-item {
+            background: #e8f5e9;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contacts-block-item::before {
+            content: '\f015';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 18px;
+            color: #0e2b0f;
+        }
+
+        .contacts-block-item:hover {
+            background: #c8e6c9;
+            color: #0e2b0f;
+            transform: translateX(5px);
+        }
+
+        /* Кнопка назад */
+        .back-home-btn {
+            background: #0e2b0f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .back-home-btn:hover {
+            background: #0e2b0f;
+            transform: translateY(-2px);
+        }
+
+
+        /* Партнеры */
+        .partners {
+            background: #f5f5f5;
+            padding: 20px 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .partners-grid img {
+            height: 70px;
+            object-fit: contain;
+        }
+
+        /* Футер */
+        .footer {
+            background: #1e2a3e;
+            color: #ddd;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./img/КИТАБ.svg" alt="Логотип" style="filter:brightness(92%) contrast(87%);">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">Об учреждении</a></li>
+                    <li><a href="./novosti.html">Новости</a></li>
+                    <li><a href="./poster.html">Афиша</a></li>
+                    <li><a href="contact.html" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://vk.com/almetbiblioteka" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-vk"></i></a>
+                <a href="https://t.me/almetbiblio" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/results?search_query=альметьевск+библиотека" target="_blank"
+                    rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO СЕКЦИЯ -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Контакты и филиалы</h1>
+            <p>Все библиотеки Централизованной библиотечной системы Альметьевского муниципального района</p>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <h3 style="color: #0e2b0f; margin-bottom: 20px;">Центральная библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Альметьевск, ул. Ленина, 98</p>
+                    <p><i class="fas fa-phone"></i> +7 (8553) 22-33-44</p>
+                    <p><i class="fas fa-envelope"></i> info@almetbiblio.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Сб: 10:00–19:00, Вс: выходной</p>
+                </div>
+                <div class="map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=52.3189%2C54.9010&z=13&lang=ru_RU" loading="lazy"
+                        title="карта"></iframe>
+                </div>
+            </div>
+
+            <h2 class="filials-title">Городские и сельские филиалы</h2>
+            <div class="contacts-block">
+                <a class="contacts-block-item" href="centralbib.html">Центральная библиотека</a>
+                <a class="contacts-block-item" href="central-children.html">Центральная детская библиотека</a>
+                <a class="contacts-block-item" href="filial1.html">Городская библиотека – филиал №1</a>
+                <a class="contacts-block-item" href="filial2.html">Городская специализированная библиотека литературы
+                    народов Поволжья – филиал №2</a>
+                <a class="contacts-block-item" href="filial3.html">Городская библиотека – филиал №3</a>
+                <a class="contacts-block-item" href="filial4.html">Городская библиотека – филиал №4</a>
+                <a class="contacts-block-item" href="filial5.html">Городская библиотека – филиал №5</a>
+                <a class="contacts-block-item" href="filial7.html">Городская детская библиотека – филиал №7</a>
+                <a class="contacts-block-item" href="filial12.html">Городская библиотека – филиал №12</a>
+                <a class="contacts-block-item" href="filial8.html">Городская специализированная детская библиотека –
+                    филиал №8</a>
+            </div>
+
+            <!-- Кнопка возврата -->
+            <div style="text-align: center;">
+                <a href="index.html" class="back-home-btn">← Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+    <!-- ПАРТНЕРЫ -->
+    <div class="partners">
+        <div class="container">
+            <div class="partners-grid">
+                <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/КультураРФ-e1765462576235.png" alt="Культура.РФ">
+                </a>
+                <a href="http://publication.pravo.gov.ru/document/1600202510210002" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/logo_2026_rt2.jpg" alt="2026 РФ">
+                </a>
+                <a href="https://pro.culture.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo3.jpg" alt="2026 РТ">
+                </a>
+                <a href="https://telefon-doveria.ru/about/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo4.png" alt="ЛитРес">
+                </a>
+                <a href="https://rusneb.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo5.jpg" alt="НЭБ">
+                </a>
+                <a href="https://history-lib.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo6.png" alt="НЭБ">
+                </a>
+                <a href="https://www.ya-roditel.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изобр2.gif" alt="НЭБ">
+                </a>
+                <a href="https://rtdety.tatarstan.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб9.jpg" alt="НЭБ">
+                </a>
+                <a href="http://fss16.ru/index.php?name=News&op=article&sid=1396" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/изоб8.jpg" alt="НЭБ">
+                </a>
+                <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/logo7.jpg" alt="НЭБ">
+                </a>
+                <a href="http://pravo.gov.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб13.jpg" alt="НЭБ">
+                </a>
+                <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб7.jpg" alt="НЭБ">
+                </a>
+                <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб6.jpg" alt="НЭБ">
+                </a>
+                <a href="https://новаябиблиотека.рф/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб5.png" alt="НЭБ">
+                </a>
+                <a href="https://kitap.tatar.ru/ru/site/42317029a/pages/antiterror/" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/изоб4.png" alt="НЭБ">
+                </a>
+                <a href="85.233.77.7/cgi/zgate.exe?Init+005.xml,simple.xsl+rus" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/изоб12.jpg" alt="НЭБ">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p style="margin-top: 15px;">© 2026 МБУ «ЦБС Альметьевского МР РТ»<br>Год единства и созидания</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://almetbiblio.ru/poisk/" target="_blank">Электронный каталог</a>
+                    <a href="https://culture.gov.ru/" target="_blank">Министерство культуры РФ</a>
+                    <a href="https://mincult.tatarstan.ru/" target="_blank">Министерство культуры РТ</a>
+                    <a href="https://almetcult.ru/" target="_blank">Управление культуры Альметьевск</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавающие кнопки
+        document.getElementById('ratingBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Оценить работу библиотеки можно по телефону +7 (8553) 22-33-44 или на сайте almetbiblio.ru');
+        });
+        document.getElementById('bookBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Для продления книги позвоните +7 (8553) 22-33-44 или напишите на info@almetbiblio.ru');
+        });
+    </script>
+</body>
+
+</html>

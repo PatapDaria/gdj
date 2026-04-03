@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Об учреждении - МБУ «ЦБС Альметьевского МР РТ»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+     
+
+        /* Шапка */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            color: #153d17;
+        }
+
+        .nav a.active {
+            color: #134616;
+            font-weight: 700;
+            border-bottom: 2px solid #0e2b0f;
+            padding-bottom: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 25px;
+        }
+
+        .social-icons a {
+            color: #0e2b0f;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #0e2b0f;
+        }
+
+        /* Hero секция для страницы об учреждении */
+        .page-hero {
+            background: linear-gradient(15deg, #bddf00f3 0, 2%, #001a01 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveDots 20s linear infinite;
+        }
+
+        @keyframes moveDots {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(40px, 40px);
+            }
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Основной контент */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        .about-section h2 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-intro {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+            margin-bottom: 3rem;
+        }
+
+        /* Минималистичный таймлайн (исправленная версия) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-year {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #6b6b6b;
+            letter-spacing: 0.01em;
+            padding-top: 0.2rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 0 0.4rem 0;
+            color: #111;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        /* тонкая линия вместо точек */
+        .timeline-item:not(:last-child) {
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 48px;
+            top: 28px;
+            bottom: -32px;
+            width: 1px;
+            background-color: #e0e0e0;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 640px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+
+            .timeline-year {
+                font-size: 0.8rem;
+                color: #8a8a8a;
+                margin-bottom: 0.25rem;
+            }
+
+            .timeline-item:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        /* Карточки ценностей */
+        /* Стили для карточек ценностей */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e8e8e8;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0e2b0f, #6ab04c);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+            border-color: #0e2b0f;
+        }
+
+        /* Стили для картинок */
+        .value-icon {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .value-icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon img {
+            transform: scale(1.1);
+        }
+
+        /* Заголовок карточки */
+        .value-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #134216;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .value-card:hover h3 {
+            color: #134216;
+        }
+
+        /* Описание */
+        .value-card p {
+            color: #5a6c7e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Стиль для ссылки "Узнать подробнее" */
+        .value-more {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #134216;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .value-card:hover .value-more {
+            border-bottom-color: #134216;
+            transform: translateX(5px);
+        }
+
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            margin: 8% auto;
+            padding: 35px;
+            width: 90%;
+            max-width: 650px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #134216;
+            border-radius: 10px;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #134216;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #134216;
+            display: inline-block;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-line;
+            margin-top: 20px;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+            background: #134216;
+            transform: rotate(90deg);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-60px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .values-grid {
+                gap: 20px;
+            }
+
+            .value-card {
+                padding: 25px 20px;
+            }
+
+            .value-icon img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .value-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                margin: 15% auto;
+                padding: 25px;
+                width: 95%;
+            }
+
+            .modal-content h3 {
+                font-size: 1.4rem;
+            }
+
+            .modal-content p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .modal-close {
+                right: 15px;
+                top: 12px;
+                font-size: 28px;
+            }
+        }
+
+        /* Руководство */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .leader-card {
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .leader-card:hover {
+            background: #f0f7f0;
+        }
+
+        .leader-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 6%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #0e2e0f;
+        }
+
+        .leader-card h3 {
+            font-size: 1.3rem;
+            color: #0c2e0e;
+            margin-bottom: 5px;
+        }
+
+        .leader-position {
+            color: #265c28;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .leader-desc {
+            color: #5a6c7e;
+            font-size: 0.95rem;
+        }
+
+        /* Кнопка назад */
+        .back-home-btn {
+            background: #0e3110;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home-btn:hover {
+            background: #7e7b29;
+            transform: translateY(-2px);
+        }
+
+        /* Партнеры */
+        .partners {
+            background: #f5f5f5;
+            padding: 20px 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .partners-grid img {
+            height: 70px;
+            object-fit: contain;
+        }
+
+        /* Футер */
+        .footer {
+            background: #1e2a3e;
+            color: #ddd;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./img/КИТАБ.svg" alt="Логотип" style="filter:brightness(92%) contrast(87%);">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html" class="active">Об учреждении</a></li>
+                    <li><a href="./novosti.html">Новости</a></li>
+                    <li><a href="./poster.html">Афиша</a></li>
+                    <li><a href="./contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://vk.com/almetbiblioteka" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-vk"></i></a>
+                <a href="https://t.me/almetbiblio" target="_blank" rel="noopener noreferrer"><i
+                        class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/results?search_query=альметьевск+библиотека" target="_blank"
+                    rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO СЕКЦИЯ -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Об учреждении</h1>
+            <p>Муниципальное бюджетное учреждение «Централизованная библиотечная система Альметьевского муниципального
+                района Республики Татарстан»</p>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="about-content">
+        <div class="container">
+            <!-- цель -->
+            <div class="about-section">
+                <h2>Наша цель</h2>
+                <p>МБУ «ЦБС Альметьевского МР РТ» — это современное культурное пространство, объединяющее 58 библиотек,
+                    включая центральные, городские и сельские филиалы. Мы стремимся сделать знания доступными для
+                    каждого жителя нашего района, создавая комфортную среду для чтения, обучения, творчества и общения
+                <p> Альметьевск, как редкий ресурсодобывающий город, активно развивает городскую среду, что является
+                    частью социальной политики, направленной на повышение качества жизни. Публичное акционерное общество
+                    «Татнефть» предоставило дополнительное финансирование социальной сфере, подняв ее на новый
+                    качественный уровень. Благодаря инициативам «Татнефти», Альметьевск превращается в культурную
+                    столицу юго-востока Татарстана.
+                </p>
+                Реализуются разнообразные культурные проекты, включая паблик-арт-программу «Сказки о Золотых яблоках»,
+                «Культурную среду», «Зелёный фитнес», этно-модерн фестиваль «Каракуз». Также город привлекает всемирно
+                известных артистов, таких как В. Спиваков, Ю. Башмет, А. Гарифуллина, Д. Мацуев.
+                </p>
+                <p>Наша цель — не просто хранить книги, но и быть центрами притяжения для людей всех возрастов, местами,
+                    где рождаются идеи, реализуются проекты и формируется культурный код нашего региона.</p>
+            </div>
+
+            <!-- История развития -->
+            <div class="about-section">
+                <h2>История и развитие</h2>
+                <p class="section-intro">
+                    Библиотечная система Альметьевска ведет свою историю с 1950-х годов.
+                    За 70 лет мы прошли путь от небольших книжных собраний до многофункциональных культурных центров
+                    с современным оборудованием, цифровыми ресурсами и инклюзивными программами.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1958</div>
+                        <div class="timeline-content">
+                            <h3>Основание</h3>
+                            <p>Открывается первая библиотека города. Располагалась она в здании Дома пионеров по ул.
+                                Чехова, где занимала 2 комнаты. </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1970–1980</div>
+                        <div class="timeline-content">
+                            <h3>Расширение сети</h3>
+                            <p>Активное строительство библиотек в новых микрорайонах города и сельских поселениях
+                                района.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000-е</div>
+                        <div class="timeline-content">
+                            <h3>Цифровая трансформация</h3>
+                            <p>Внедрение электронного каталога, запуск сайта, автоматизация библиотечных процессов.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2017</div>
+                        <div class="timeline-content">
+                            <h3>Единый читательский билет</h3>
+                            <p>Введение системы ЕЧБ — доступ к фондам любой библиотеки Республики Татарстан.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h3>Новый этап</h3>
+                            <p>VR-технологии, виртуальные концертные залы, развитие инклюзивных программ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Приоритеты 2026 года -->
+            <div class="about-section">
+                <h2>Приоритеты 2026 года</h2>
+                <p>В Год единства и созидания мы делаем акцент на цифровизацию, доступность и инклюзивность. Запущены
+                    новые проекты: «Читаем Тукая вместе», VR-лектории, расширение виртуальных концертных залов. Мы
+                    работаем над тем, чтобы каждая библиотека стала центром притяжения для своего района.</p>
+                <p>Социальная значимость и востребованность библиотек, самой книги сейчас растет, возрастает доля чтения
+                    в образовательной деятельности, значительно усложняются запросы читателей. </p>
+                <p>Создается модель современной сельской библиотеки, которая представляет собой многофункциональный
+                    информационно – культурный центр села. </p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">новых цифровых сервисов</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">библиотек с Wi-Fi</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">инклюзивных мероприятий</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Наши ценности -->
+            <div class="about-section">
+                <h2>Наши ценности</h2>
+                <div class="values-grid">
+                    <!-- Карточка 1: Доступность -->
+                    <div class="value-card"
+                        onclick="openValueModal('Доступность', 'Доступность — это фундаментальный принцип нашей работы. Мы стремимся сделать знания и информацию доступными для каждого жителя Альметьевского района независимо от:\n\n• возраста и физических возможностей\n• места жительства (город или село)\n• социального статуса\n\nДля этого мы:\n✓ Обеспечиваем безбарьерную среду в библиотеках\n✓ Внедряем технологии для людей с ограниченными возможностями\n✓ Развиваем выездные библиотечные пункты в отдаленных селах\n✓ Предоставляем доступ к электронным ресурсам 24/7\n✓ Организуем доставку книг на дом для маломобильных граждан\n\nКаждый человек заслуживает равных возможностей для развития, и наша задача — создать эти возможности.')">
+                        <div class="value-icon">
+                            <img src="./img/доступность.png" alt="Доступность">
+                        </div>
+                        <h3>Доступность</h3>
+                        <p>Каждый житель, независимо от возраста, места жительства или физических возможностей, имеет
+                            равный доступ к знаниям и информации.</p>
+                        <div class="value-more">Узнать подробнее →</div>
+                    </div>
+
+                    <!-- Карточка 2: Уважение к читателю -->
+                    <div class="value-card"
+                        onclick="openValueModal('Уважение к читателю', 'Уважение к читателю — главный принцип нашей работы. Мы создаем пространство, где каждый чувствует себя желанным и ценным гостем.\n\nНаши принципы:\n\n• Индивидуальный подход к каждому посетителю\n• Внимательное отношение к запросам и пожеланиям\n• Создание комфортной, дружелюбной атмосферы\n• Конфиденциальность и этичное обслуживание\n• Постоянное повышение качества сервиса\n\nМы верим, что библиотека — это не просто место хранения книг, а пространство, где люди находят поддержку, вдохновение и понимание. Каждый сотрудник нашей системы стремится сделать визит в библиотеку приятным и полезным для читателя.')">
+                        <div class="value-icon">
+                            <img src="./img/своб.png" alt="Уважение к читателю">
+                        </div>
+                        <h3>Уважение к читателю</h3>
+                        <p>Мы создаем комфортную, дружелюбную атмосферу, где каждый чувствует себя желанным гостем.</p>
+                        <div class="value-more">Узнать подробнее →</div>
+                    </div>
+
+                    <!-- Карточка 3: Сохранение наследия -->
+                    <div class="value-card"
+                        onclick="openValueModal('Сохранение наследия', 'Сохранение культурного наследия — одна из важнейших миссий библиотеки. Мы бережно храним историю и традиции нашего региона.\n\nНаправления работы:\n\n• Формирование и сохранение краеведческого фонда\n• Оцифровка редких и ценных изданий\n• Сбор материалов по истории Альметьевска и района\n• Проведение краеведческих мероприятий\n• Сотрудничество с архивами и музеями\n• Сохранение татарского языка и культуры\n\nВ нашем фонде — уникальные документы, фотографии, рукописи, рассказывающие об истории нефтяной столицы Татарстана. Мы передаем эти знания будущим поколениям.')">
+                        <div class="value-icon">
+                            <img src="./img/населн.png" alt="Сохранение наследия">
+                        </div>
+                        <h3>Сохранение наследия</h3>
+                        <p>Бережно храним книжный фонд, краеведческие материалы и культурные традиции нашего региона.
+                        </p>
+                        <div class="value-more">Узнать подробнее →</div>
+                    </div>
+
+                    <!-- Карточка 4: Инновации -->
+                    <div class="value-card"
+                        onclick="openValueModal('Инновации', 'Инновации — это движение вперед. Мы постоянно внедряем новые технологии, чтобы отвечать современным запросам читателей.\n\nНаши инновационные проекты:\n\n• VR-лектории и виртуальные экскурсии\n• Мобильное приложение библиотеки\n• Электронная доставка документов\n• Виртуальные концертные залы\n• Интерактивные выставки и квесты\n• Цифровые сервисы для читателей\n• Автоматизация библиотечных процессов\n\nМы не боимся экспериментировать и искать новые форматы работы. Библиотека будущего — это гибридное пространство, объединяющее традиции и современные технологии.')">
+                        <div class="value-icon">
+                            <img src="./img/ыыое.png" alt="Инновации">
+                        </div>
+                        <h3>Инновации</h3>
+                        <p>Постоянно внедряем современные технологии, чтобы идти в ногу со временем и отвечать запросам
+                            пользователей.</p>
+                        <div class="value-more">Узнать подробнее →</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно для подробного текста -->
+            <div id="valueModal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" onclick="closeValueModal()">&times;</span>
+                    <h3 id="modalTitle">Заголовок</h3>
+                    <p id="modalText">Текст</p>
+                </div>
+            </div>
+
+            <script>
+                // Функция открытия модального окна
+                function openValueModal(title, text) {
+                    const modal = document.getElementById('valueModal');
+                    const modalTitle = document.getElementById('modalTitle');
+                    const modalText = document.getElementById('modalText');
+
+                    modalTitle.textContent = title;
+                    modalText.textContent = text;
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+
+                // Функция закрытия модального окна
+                function closeValueModal() {
+                    const modal = document.getElementById('valueModal');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+
+                // Закрытие модального окна при клике вне его области
+                window.onclick = function (event) {
+                    const modal = document.getElementById('valueModal');
+                    if (event.target == modal) {
+                        closeValueModal();
+                    }
+                }
+
+                // Закрытие по клавише Escape
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        const modal = document.getElementById('valueModal');
+                        if (modal.style.display === 'block') {
+                            closeValueModal();
+                        }
+                    }
+                });
+            </script>
+            <!-- Модальное окно для подробного текста -->
+            <div id="valueModal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" onclick="closeValueModal()">&times;</span>
+                    <h3 id="modalTitle">Заголовок</h3>
+                    <p id="modalText">Текст</p>
+                </div>
+            </div>
+            <!-- Руководство -->
+            <div class="about-section">
+                <h2>Руководство</h2>
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <img src="./img/директор.jpeg" alt="Директор" class="leader-photo"
+                            onerror="this.src='https://via.placeholder.com/180x180?text=Директор'">
+                        <h3>Гарифуллина Эльвира Рафаиловна</h3>
+                        <div class="leader-position">Директор МБУ «ЦБС Альметьевского МР РТ»</div>
+                        <p class="leader-desc">Заслуженный работник культуры Республики Татарстан. Руководит системой с
+                            2015 года, инициировала множество инновационных проектов.</p>
+                    </div>
+                    <div class="leader-card">
+                        <img src="./img/директор3.jpeg" alt="Заместитель" class="leader-photo"
+                            onerror="this.src='https://via.placeholder.com/180x180?text=Заместитель'">
+                        <h3>Садриева Лейсан Ильдусовна</h3>
+                        <div class="leader-position">Заместитель директора по работе с детьми</div>
+                        <p class="leader-desc">Курирует детские библиотеки, проекты по продвижению чтения среди детей и
+                            подростков.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопка возврата -->
+            <div style="text-align: center;">
+                <a href="index.html" class="back-home-btn">← Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПАРТНЕРЫ -->
+    <div class="partners">
+        <div class="container">
+            <div class="partners-grid">
+                <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/КультураРФ-e1765462576235.png" alt="Культура.РФ">
+                </a>
+                <a href="http://publication.pravo.gov.ru/document/1600202510210002" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="./img/logo_2026_rt2.jpg" alt="2026 РФ">
+                </a>
+                <a href="https://pro.culture.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo3.jpg" alt="2026 РТ">
+                </a>
+                <a href="https://telefon-doveria.ru/about/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo4.png" alt="ЛитРес">
+                </a>
+                <a href="https://rusneb.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo5.jpg" alt="НЭБ">
+                </a>
+                <a href="https://history-lib.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo6.png" alt="НЭБ">
+                </a>
+                <a href="https://www.ya-roditel.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изобр2.gif" alt="НЭБ">
+                </a>
+                <a href="https://rtdety.tatarstan.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб9.jpg" alt="НЭБ">
+                </a>
+                <a href="http://fss16.ru/index.php?name=News&op=article&sid=1396" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб8.jpg" alt="НЭБ">
+                </a>
+                <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/logo7.jpg" alt="НЭБ">
+                </a>
+                <a href="http://pravo.gov.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб13.jpg" alt="НЭБ">
+                </a>
+                <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб7.jpg" alt="НЭБ">
+                </a>
+                <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб6.jpg" alt="НЭБ">
+                </a>
+                <a href="https://новаябиблиотека.рф/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб5.png" alt="НЭБ">
+                </a>
+                <a href="https://kitap.tatar.ru/ru/site/42317029a/pages/antiterror/" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб4.png" alt="НЭБ">
+                </a>
+                <a href="85.233.77.7/cgi/zgate.exe?Init+005.xml,simple.xsl+rus" target="_blank" rel="noopener noreferrer">
+                    <img src="./img/изоб12.jpg" alt="НЭБ">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p style="margin-top: 15px;">© 2026 МБУ «ЦБС Альметьевского МР РТ»<br>Год единства и созидания</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://almetbiblio.ru/poisk/" target="_blank">Электронный каталог</a>
+                    <a href="https://culture.gov.ru/" target="_blank">Министерство культуры РФ</a>
+                    <a href="https://mincult.tatarstan.ru/" target="_blank">Министерство культуры РТ</a>
+                    <a href="https://almetcult.ru/" target="_blank">Управление культуры Альметьевск</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавающие кнопки
+        document.getElementById('ratingBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Оценить работу библиотеки можно по телефону +7 (8553) 22-33-44 или на сайте almetbiblio.ru');
+        });
+        document.getElementById('bookBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Для продления книги позвоните +7 (8553) 22-33-44 или напишите на info@almetbiblio.ru');
+        });
+    </script>
+</body>
+
+</html>

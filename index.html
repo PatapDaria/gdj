@@ -1,0 +1,1027 @@
+
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МБУ «ЦБС Альметьевского МР РТ»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #1e2a3e;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            color: #0e2b0f;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 25px;
+        }
+        .social-icons a {
+            color: #0e2b0f;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: #0e2b0f;
+        }
+        /* Hero - с изображением на фоне */
+        .hero {
+            background-image: url('./img/Screenshot_20260323_095448 1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Затемнение фона */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.8) 100%
+            );
+            z-index: -1;
+        }
+
+        .hero-year {
+            font-size: 90px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: -20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            color: #f5f5f5;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #323b0ac0;
+            color: white;
+            padding: 16px 50px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+            z-index: 2;
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .hero-btn:hover {
+            background: #0e2b0f;
+            transform: translateY(-2px);
+        }
+        /* Стили для статистики */
+        .hero-stats {
+            background: rgba(251, 255, 0, 0.068);
+            backdrop-filter: blur(12px);
+            padding: 28px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.007);
+            box-shadow: 0 -4px 20px rgba(255, 255, 255, 0.082);
+        }
+
+        .hero-stats-item {
+            text-align: center;
+            flex: 1;
+            padding: 20px 20px;
+        }
+
+        .stats-number {
+            display: block;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .stats-text {
+            display: block;
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .hero-stats-divider {
+            width: 2px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            position: relative;
+            padding-bottom: 240px;
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #0e2b0f;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #0e2b0f;
+            margin: 12px auto 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #0e2b0f;
+        }
+
+        .card-content a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #0e2b0f;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .card-content a:hover {
+            text-decoration: none;
+        }
+
+        /* Контакты */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contacts-info p {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            border: 0;
+        }
+
+        /* Стили для страниц-разделов */
+        .page {
+            display: none;
+            padding: 60px 0;
+            background: #fff;
+        }
+        .page.active-page {
+            display: block;
+        }
+        .page-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .page-content h2 {
+            color: #1f491a;
+            margin: 30px 0 15px;
+        }
+        .page-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .back-home-btn {
+            background: #0e2b0f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .back-home-btn:hover {
+            background: #0c300f;
+            text-decoration: none;
+        }
+
+        /* Партнеры */
+        .partners {
+            background: #f5f5f5;
+            padding: 20px 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .partners-grid img {
+            height: 70px;
+            object-fit: contain;
+        }
+
+        /* Футер */
+        .footer {
+            background: #1e2a3e;
+            color: #ddd;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+        }
+        /* Модальное окно */
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            transition: 0.3s;
+        }
+        .close-modal:hover {
+            color: #0e2b0f;
+            transform: rotate(90deg);
+        }
+        .modal-content h2 {
+            color: #0e2b0f;
+            margin-bottom: 15px;
+            padding-right: 30px;
+        }
+        .modal-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .modal-img {
+            width: 100%;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        .modal-btn {
+            background: #0e2b0f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .modal-btn:hover {
+            background: #0e2c10;
+            transform: translateY(-2px);
+        }
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0e2b0f;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+            cursor: pointer;
+        }
+        .card-link:hover {
+            gap: 12px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./img/КИТАБ.svg" alt="Логотип" style="filter:brightness(92%) contrast(87%);">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">Об учреждении</a></li>
+                    <li><a href="novosti.html">Новости</a></li>
+                    <li><a href="./poster.html">Афиша</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://vk.com/almetbiblioteka" target="_blank" rel="noopener noreferrer"><i class="fab fa-vk"></i></a>
+                <a href="https://t.me/almetbiblio" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/results?search_query=альметьевск+библиотека" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== ГЛАВНАЯ СТРАНИЦА ===================== -->
+    <main>
+        <section class="hero">
+            <div class="hero-year">2026</div>
+            <h1>Год единства и созидания<br>в библиотеках Альметьевска</h1>
+            <p>58 библиотек, 717 882 книги, 83 019 читателей</p>
+            <a href="#newsSection" class="hero-btn">Узнать больше</a>
+            
+            <div class="hero-stats">
+                <div class="hero-stats-item">
+                    <span class="stats-number">5 816 м²</span>
+                    <span class="stats-text">Библиотечное пространство</span>
+                </div>
+                <div class="hero-stats-divider"></div>
+                <div class="hero-stats-item">
+                    <span class="stats-number">717 882</span>
+                    <span class="stats-text">Книжный фонд</span>
+                </div>
+                <div class="hero-stats-divider"></div>
+                <div class="hero-stats-item">
+                    <span class="stats-number">83 019</span>
+                    <span class="stats-text">Активных читателей</span>
+                </div>
+            </div>
+        </section>
+        
+        <div id="newsSection"></div>
+        
+        <!-- НОВОСТИ (блок на главной) -->
+        <section id="newsPreview">
+            <div class="container">
+                <h2 class="section-title">Новости</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <img src="./img/пойдемвмузей.jpg" alt="Пойдем в музей!">
+                        <div class="card-content">
+                            <h3>Пойдем в музей!</h3>
+                            <p>Ежегодная акция «Ночь музеев» пройдет в библиотеках Альметьевска.</p>
+                            <a href="#" onclick="openNewsModal('museum'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./img/провожаем.png" alt="Провожаем зиму">
+                        <div class="card-content">
+                            <h3>Провожаем зиму</h3>
+                            <p>Масленичные гуляния в библиотеках города: блины, хороводы, народные игры.</p>
+                            <a href="#" onclick="openNewsModal('maslenitsa'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./img/намжить.jpeg" alt="Нам жить и помнить">
+                        <div class="card-content">
+                            <h3>Нам жить и помнить</h3>
+                            <p>Цикл мероприятий, посвященных Дню Победы.</p>
+                            <a href="#" onclick="openNewsModal('victory'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./img/тукай.jpeg" alt="Тукай с нами">
+                        <div class="card-content">
+                            <h3>Тукай с нами</h3>
+                            <p>Празднование дня рождения великого татарского поэта Габдуллы Тукая.</p>
+                            <a href="#" onclick="openNewsModal('tukay'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./img/120лет.jpeg" alt="120-летие Мусы Джалиля">
+                        <div class="card-content">
+                            <h3>120-летие Мусы Джалиля</h3>
+                            <p>Юбилейные мероприятия, посвященные великому поэту-герою.</p>
+                            <a href="#" onclick="openNewsModal('jalil'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./img/исторический.jpeg" alt="Исторический кроссворд">
+                        <div class="card-content">
+                            <h3>Исторический кроссворд</h3>
+                            <p>Всероссийская просветительская акция, посвященная 80-летию Победы.</p>
+                            <a href="#" onclick="openNewsModal('crossword'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="./novosti.html" class="back-home-btn">Все новости →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- МЕРОПРИЯТИЯ -->
+        <section id="eventsPreview" style="background: #f9f9f9;">
+            <div class="container">
+                <h2 class="section-title">Мероприятия</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>«Слово о созидании»</h3>
+                            <p>12 марта, 18:00 · Центральная библиотека. Лекция-дискуссия.</p>
+                            <a href="#" onclick="openEventModal('sozidanie'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Литературный квартирник</h3>
+                            <p>19 марта, 17:00 · Молодежное пространство. Чтения поэзии.</p>
+                            <a href="#" onclick="openEventModal('kvartirnik'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Виртуальный концерт</h3>
+                            <p>26 марта, 19:00 · Трансляция из Мариинского театра.</p>
+                            <a href="#" onclick="openEventModal('concert'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="./novosti.html" class="back-home-btn">Все мероприятия →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПРОЕКТЫ (с модальными окнами) -->
+        <section id="projectsPreview">
+            <div class="container">
+                <h2 class="section-title">Проекты</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <img src="https://almetbiblio.ru/wp-content/uploads/2026/01/t30WdROw-dE5-T4mQVqyN8EJY8mznc7rNjf5Or7zZijOv_N2TfQgaZlnZnHOltGVnbwZQ1myhpCChQ_Gtpi-NRul-e1768827475316-300x275.jpg" alt="Читаем Тукая вместе">
+                        <div class="card-content">
+                            <h3>Читаем Тукая вместе</h3>
+                            <p>Республиканский марафон чтения на татарском и русском языках.</p>
+                            <a href="#" onclick="openProjectModal('tukay'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://almetbiblio.ru/wp-content/uploads/2022/12/projects-pushkin.jpg" alt="Пушкинская карта">
+                        <div class="card-content">
+                            <h3>Пушкинская карта</h3>
+                            <p>Эксклюзивные мастер-классы, театральные читки для молодежи.</p>
+                            <a href="#" onclick="openProjectModal('pushkin'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-market-3.jpeg" alt="Креатив-маркет">
+                        <div class="card-content">
+                            <h3>Креатив-маркет «ПроЯвляйся»</h3>
+                            <p>Выставки handmade, лекции от дизайнеров.</p>
+                            <a href="#" onclick="openProjectModal('creativemarket'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концертный зал">
+                        <div class="card-content">
+                            <h3>Виртуальный концертный зал</h3>
+                            <p>Трансляции лучших спектаклей и концертов в библиотеках города.</p>
+                            <a href="#" onclick="openProjectModal('virtual'); return false;">Подробнее →</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="projects.html" class="back-home-btn">Все проекты →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ на главной (кратко) -->
+        <section id="contactsPreview" style="background: #f9f9f9;">
+            <div class="container">
+                <h2 class="section-title">Контакты</h2>
+                <div class="contacts-grid">
+                    <div class="contacts-info">
+                        <h3 style="color: #0e2b0f;">Центральная библиотека</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Альметьевск, ул. Ленина, 98</p>
+                        <p><i class="fas fa-phone"></i> +7 (8553) 22-33-44</p>
+                        <p><i class="fas fa-envelope"></i> info@almetbiblio.ru</p>
+                        <p><i class="fas fa-clock"></i> Пн-Сб: 10:00–19:00, Вс: выходной</p>
+                    </div>
+                    <div class="map">
+                        <iframe src="https://yandex.ru/map-widget/v1/?ll=52.3189%2C54.9010&z=13&lang=ru_RU" loading="lazy" title="карта"></iframe>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="contact.html" class="back-home-btn">Все контакты и филиалы →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- МОДАЛЬНЫЕ ОКНА ДЛЯ НОВОСТЕЙ -->
+    <div id="modalMuseum" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalMuseum')">&times;</span>
+            <h2>Пойдем в музей!</h2>
+            <img src="./img/пойдемвмузей.jpg" alt="Пойдем в музей!" class="modal-img">
+            <p><strong>«Ночь музеев»</strong> — ежегодная акция, которая пройдет в библиотеках Альметьевска 18 мая 2026 года. Вас ждут увлекательные экскурсии, мастер-классы и выставки.</p>
+            <button class="modal-btn" onclick="closeModal('modalMuseum')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalMaslenitsa" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalMaslenitsa')">&times;</span>
+            <h2>Провожаем зиму</h2>
+            <img src="./img/провожаем.png" alt="Провожаем зиму" class="modal-img">
+            <p><strong>Масленичные гуляния</strong> в библиотеках города: блины, хороводы, народные игры и мастер-классы по изготовлению кукол-оберегов.</p>
+            <button class="modal-btn" onclick="closeModal('modalMaslenitsa')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalVictory" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalVictory')">&times;</span>
+            <h2>Нам жить и помнить</h2>
+            <img src="./img/намжить.jpeg" alt="Нам жить и помнить" class="modal-img">
+            <p><strong>Цикл мероприятий, посвященных Дню Победы.</strong> Встречи с ветеранами, уроки мужества, книжные выставки и литературные вечера.</p>
+            <button class="modal-btn" onclick="closeModal('modalVictory')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalTukay" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalTukay')">&times;</span>
+            <h2>Тукай с нами</h2>
+            <img src="./img/тукай.jpeg" alt="Тукай с нами" class="modal-img">
+            <p><strong>Празднование дня рождения великого татарского поэта Габдуллы Тукая.</strong> Чтение стихов, театрализованные представления и конкурсы.</p>
+            <button class="modal-btn" onclick="closeModal('modalTukay')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalJalil" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalJalil')">&times;</span>
+            <h2>120-летие Мусы Джалиля</h2>
+            <img src="./img/120лет.jpeg" alt="120-летие Мусы Джалиля" class="modal-img">
+            <p><strong>Юбилейные мероприятия, посвященные великому поэту-герою.</strong> Литературные чтения, выставки и концерты во всех библиотеках района.</p>
+            <button class="modal-btn" onclick="closeModal('modalJalil')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalCrossword" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalCrossword')">&times;</span>
+            <h2>Исторический кроссворд</h2>
+            <img src="./img/исторический.jpeg" alt="Исторический кроссворд" class="modal-img">
+            <p><strong>Всероссийская просветительская акция</strong>, посвященная 80-летию Победы. Участники проверили свои знания истории.</p>
+            <button class="modal-btn" onclick="closeModal('modalCrossword')">Закрыть</button>
+        </div>
+    </div>
+    
+    <div id="modalVirtual" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalVirtual')">&times;</span>
+            <h2>Виртуальный концертный зал</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концертный зал" class="modal-img">
+            <p><strong>Новый сезон виртуальных концертов</strong> в библиотеках Альметьевска. Трансляции лучших спектаклей и концертов.</p>
+            <button class="modal-btn" onclick="closeModal('modalVirtual')">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА ДЛЯ МЕРОПРИЯТИЙ -->
+    <div id="modalSozidanie" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalSozidanie')">&times;</span>
+            <h2>«Слово о созидании»</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/events-lecture.jpg" alt="Лекция-дискуссия" class="modal-img">
+            <p><strong>Дата:</strong> 12 марта 2026 года, 18:00</p>
+            <p><strong>Место:</strong> Центральная библиотека</p>
+            <p>Лекция-дискуссия о культурном коде 2026 года. Обсуждение ценностей единства и созидания.</p>
+            <button class="modal-btn" onclick="closeModal('modalSozidanie')">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="modalKvartirnik" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalKvartirnik')">&times;</span>
+            <h2>Литературный квартирник</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/events-poetry.jpg" alt="Литературный квартирник" class="modal-img">
+            <p><strong>Дата:</strong> 19 марта 2026 года, 17:00</p>
+            <p><strong>Место:</strong> Молодежное пространство</p>
+            <p>Чтения современной поэзии, открытый микрофон, музыкальное сопровождение.</p>
+            <button class="modal-btn" onclick="closeModal('modalKvartirnik')">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="modalConcert" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalConcert')">&times;</span>
+            <h2>Виртуальный концерт</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концерт" class="modal-img">
+            <p><strong>Дата:</strong> 26 марта 2026 года, 19:00</p>
+            <p><strong>Место:</strong> Центральная детская библиотека</p>
+            <p>Трансляция симфонического оркестра из Мариинского театра.</p>
+            <button class="modal-btn" onclick="closeModal('modalConcert')">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА ДЛЯ ПРОЕКТОВ -->
+    <div id="modalProjectTukay" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalProjectTukay')">&times;</span>
+            <h2>Читаем Тукая вместе</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2026/01/t30WdROw-dE5-T4mQVqyN8EJY8mznc7rNjf5Or7zZijOv_N2TfQgaZlnZnHOltGVnbwZQ1myhpCChQ_Gtpi-NRul-e1768827475316-300x275.jpg" alt="Читаем Тукая вместе" class="modal-img">
+            <p>Республиканский марафон чтения, посвященный 140-летию Габдуллы Тукая. Чтение стихов на татарском и русском языках, викторины, конкурсы.</p>
+            <button class="modal-btn" onclick="closeModal('modalProjectTukay')">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="modalProjectPushkin" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalProjectPushkin')">&times;</span>
+            <h2>Пушкинская карта</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2022/12/projects-pushkin.jpg" alt="Пушкинская карта" class="modal-img">
+            <p>Национальный проект по популяризации культурных мероприятий среди молодежи. Эксклюзивные мастер-классы, театральные читки, доступ к цифровым ресурсам.</p>
+            <button class="modal-btn" onclick="closeModal('modalProjectPushkin')">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="modalProjectCreativemarket" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalProjectCreativemarket')">&times;</span>
+            <h2>Креатив-маркет «ПроЯвляйся»</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-market-3.jpeg" alt="Креатив-маркет" class="modal-img">
+            <p>Площадка для творческих людей: выставки handmade, лекции от дизайнеров, творческая резиденция.</p>
+            <button class="modal-btn" onclick="closeModal('modalProjectCreativemarket')">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="modalProjectVirtual" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modalProjectVirtual')">&times;</span>
+            <h2>Виртуальный концертный зал</h2>
+            <img src="https://almetbiblio.ru/wp-content/uploads/2023/05/projects-vkz-1.jpg" alt="Виртуальный концертный зал" class="modal-img">
+            <p>Проект «Цифровая культура» — трансляции лучших спектаклей и концертов в библиотеках города.</p>
+            <button class="modal-btn" onclick="closeModal('modalProjectVirtual')">Закрыть</button>
+        </div>
+    </div>
+         <!-- ПАРТНЕРЫ -->
+         <div class="partners">
+            <div class="container">
+                <div class="partners-grid">
+                    <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="./img/КультураРФ-e1765462576235.png" alt="Культура.РФ">
+                    </a>
+                    <a href="http://publication.pravo.gov.ru/document/1600202510210002" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="./img/logo_2026_rt2.jpg" alt="2026 РФ">
+                    </a>
+                    <a href="https://pro.culture.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo3.jpg" alt="2026 РТ">
+                    </a>
+                    <a href="https://telefon-doveria.ru/about/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo4.png" alt="ЛитРес">
+                    </a>
+                    <a href="https://rusneb.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo5.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://history-lib.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo6.png" alt="НЭБ">
+                    </a>
+                    <a href="https://www.ya-roditel.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изобр2.gif" alt="НЭБ">
+                    </a>
+                    <a href="https://rtdety.tatarstan.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб9.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://fss16.ru/index.php?name=News&op=article&sid=1396" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб8.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://publication.pravo.gov.ru/document/0001202512250003" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/logo7.jpg" alt="НЭБ">
+                    </a>
+                    <a href="http://pravo.gov.ru/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб13.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб7.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://urait.ru/library/svobodnyy-dostup" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб6.jpg" alt="НЭБ">
+                    </a>
+                    <a href="https://новаябиблиотека.рф/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб5.png" alt="НЭБ">
+                    </a>
+                    <a href="https://kitap.tatar.ru/ru/site/42317029a/pages/antiterror/" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб4.png" alt="НЭБ">
+                    </a>
+                    <a href="85.233.77.7/cgi/zgate.exe?Init+005.xml,simple.xsl+rus" target="_blank" rel="noopener noreferrer">
+                        <img src="./img/изоб12.jpg" alt="НЭБ">
+                    </a>
+                </div>
+            </div>
+        </div>
+            <!-- ФУТЕР -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div>
+                            <p style="margin-top: 15px;">© 2026 МБУ «ЦБС Альметьевского МР РТ»<br>Год единства и созидания</p>
+                        </div>
+                        <div class="footer-links">
+                            <a href="https://almetbiblio.ru/poisk/" target="_blank">Электронный каталог</a>
+                            <a href="https://culture.gov.ru/" target="_blank">Министерство культуры РФ</a>
+                            <a href="https://mincult.tatarstan.ru/" target="_blank">Министерство культуры РТ</a>
+                            <a href="https://almetcult.ru/" target="_blank">Управление культуры Альметьевск</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        
+    <script>
+        // Плавающие кнопки
+        document.getElementById('ratingBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Оценить работу библиотеки можно по телефону +7 (8553) 22-33-44 или на сайте almetbiblio.ru');
+        });
+        document.getElementById('bookBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Для продления книги позвоните +7 (8553) 22-33-44 или напишите на info@almetbiblio.ru');
+        });
+
+        // Функции для открытия модальных окон новостей
+        function openNewsModal(type) {
+            const modalMap = {
+                'museum': 'modalMuseum',
+                'maslenitsa': 'modalMaslenitsa',
+                'victory': 'modalVictory',
+                'tukay': 'modalTukay',
+                'jalil': 'modalJalil',
+                'crossword': 'modalCrossword',
+                'virtual': 'modalVirtual'
+            };
+            const modalId = modalMap[type];
+            if (modalId) {
+                document.getElementById(modalId).style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Функции для открытия модальных окон мероприятий
+        function openEventModal(type) {
+            const modalMap = {
+                'sozidanie': 'modalSozidanie',
+                'kvartirnik': 'modalKvartirnik',
+                'concert': 'modalConcert'
+            };
+            const modalId = modalMap[type];
+            if (modalId) {
+                document.getElementById(modalId).style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Функции для открытия модальных окон проектов
+        function openProjectModal(type) {
+            const modalMap = {
+                'tukay': 'modalProjectTukay',
+                'pushkin': 'modalProjectPushkin',
+                'creativemarket': 'modalProjectCreativemarket',
+                'virtual': 'modalProjectVirtual'
+            };
+            const modalId = modalMap[type];
+            if (modalId) {
+                document.getElementById(modalId).style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие модального окна при клике вне его области
+        window.onclick = function (event) {
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Закрытие по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'flex') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
